@@ -13,6 +13,8 @@ description: Use when managing NixOS systems — rebuilding, configuring, deploy
 | Install NixOS on new machine | [installation.md](installation.md) |
 | Build ISO / disk image / VM image | [image-building.md](image-building.md) |
 | Configure modules, flakes, packages, services | [configuration.md](configuration.md) |
+| Ephemeral root / wipe on boot / impermanence | [impermanence.md](impermanence.md) |
+| LUKS encryption / remote unlock (SSH, Tailscale) | [luks.md](luks.md) |
 | Something isn't working / weird behavior | [anti-patterns.md](anti-patterns.md) |
 
 ## Execution Context — Ask First
