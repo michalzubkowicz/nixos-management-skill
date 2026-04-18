@@ -1,0 +1,17 @@
+{
+  "name": "nixos-management-skill",
+  "metadata": {
+    "description": "NixOS management skill set for AI coding agents — rebuild, configure, deploy, install, build images, impermanence, LUKS remote-unlock and alerting."
+  },
+  "owner": {
+    "name": "michalzubkowicz"
+  },
+  "plugins": [
+    {
+      "name": "nixos-managing",
+      "source": "./",
+      "description": "NixOS management skill — rebuild, configure, deploy, install, build images, monitor. Covers flakes, modules, secret management, VM management, disk imaging, remote deployment, impermanence, LUKS remote-unlock and Telegram/webhook alerting.",
+      "version": "0.2.0"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "nixos-managing",
+  "description": "NixOS management skill — rebuild, configure, deploy, install, build images, monitor. Covers flakes, modules, secret management, VM management, disk imaging, remote deployment, impermanence, LUKS remote-unlock and Telegram/webhook alerting.",
+  "version": "0.2.0"
+}
