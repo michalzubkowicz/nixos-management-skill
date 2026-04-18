@@ -15,6 +15,7 @@ description: Use when managing NixOS systems — rebuilding, configuring, deploy
 | Configure modules, flakes, packages, services | [configuration.md](configuration.md) |
 | Ephemeral root / wipe on boot / impermanence | [impermanence.md](impermanence.md) |
 | LUKS encryption / remote unlock (SSH, Tailscale) | [luks.md](luks.md) |
+| Health checks / Telegram (or webhook) alerts for filesystem, disk, SMART, services | [monitoring.md](monitoring.md) |
 | Something isn't working / weird behavior | [anti-patterns.md](anti-patterns.md) |
 
 ## Execution Context — Ask First
