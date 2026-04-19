@@ -96,9 +96,42 @@ CI agent (GitHub Actions / GitLab CI) → deploy to NixOS server
 | macOS without Nix | ❌ | ❌ | ❌ | ✅ |
 | CI agent with Nix | ❌ | ✅ | ❌ | ✅ |
 
+## MCP Server: `mcp-nixos` (optional accelerator)
+
+If the `mcp-nixos` MCP server ([utensils/mcp-nixos](https://github.com/utensils/mcp-nixos)) is configured in the environment, prefer it for lookups over SSH/web round-trips — **but ask the user first** before using it for a given task: *"I can use the mcp-nixos MCP server to look this up directly — want me to use it?"*
+
+**What it's good at:**
+- Exact **NixOS package** names, versions, metadata (130K+ packages)
+- **NixOS options** (23K+) — verify option paths before suggesting config
+- **Home Manager** options (5K+)
+- **nix-darwin** macOS settings (1K+)
+- **Nixvim** Neovim configuration (5K+)
+- **FlakeHub** registry discovery (600+ flakes)
+- **Noogle** Nix function lookup (2K+)
+- NixOS Wiki / nix.dev documentation
+- Binary cache status checks
+- Local flake input exploration
+- Package version history with nixpkgs commit hashes (reproducible pins)
+
+**Use it instead of:** guessing option names, scraping `search.nixos.org`, or SSHing into a host just to run `nixos-option`. Works on macOS without Nix installed.
+
+**Tools exposed:** `nix` (unified query), `nix_versions` (version history).
+
+**When NOT to ask:** the user has already said they want (or don't want) to use it this session — honor that preference.
+
+**Before installing — security review required.** Any MCP server runs with your shell privileges. Before adding `mcp-nixos` (or any MCP) to the configuration:
+1. Download the source (`git clone https://github.com/utensils/mcp-nixos` or inspect the PyPI tarball via `uvx --from mcp-nixos --print` / `pip download mcp-nixos --no-deps`).
+2. Review it for anything harmful: unexpected network endpoints, filesystem writes outside its own cache, shell/exec calls, credential reads (`~/.ssh`, `~/.aws`, env vars), obfuscated code, suspicious post-install hooks in `pyproject.toml` / `setup.py`.
+3. Pin to a known-good version/commit rather than a floating tag.
+4. Only after review — add it to the MCP config.
+
+**Tell the user** what you reviewed and what you found before they approve the install.
+
 ## Option Verification — Always Verify Before Suggesting
 
 **Never suggest a NixOS option from memory alone.** Option names change between NixOS versions, and incorrect options fail silently or produce confusing errors.
+
+**Fastest path (if available):** the `mcp-nixos` MCP server — see section above. Ask the user before using it.
 
 **Run on the NixOS host** (not macOS, not CI unless it runs NixOS):
 
