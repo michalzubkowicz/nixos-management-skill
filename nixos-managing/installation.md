@@ -237,6 +237,9 @@ system.stateVersion = "25.05";   # set to NixOS version at time of install
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # Variant: swap to the weekly-cooldown mirror for a 7-day supply chain buffer
+    # nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/0.1";
+    # See configuration.md "Variant: nixpkgs weekly cooldown" for details.
     disko = { url = "github:nix-community/disko"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix = { url = "github:ryantm/agenix"; inputs.nixpkgs.follows = "nixpkgs"; };

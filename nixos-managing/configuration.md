@@ -144,6 +144,32 @@ git add flake.lock            # always commit lock file
 
 **Critical**: All files must be `git add`ed — untracked files are invisible to Nix.
 
+### Variant: nixpkgs weekly cooldown (supply chain buffer)
+
+Optional alternative to tracking a channel directly. The `nixpkgs-weekly` mirror applies a
+seven-day cooldown — it deliberately waits a week before adopting new Nixpkgs commits, leaving
+time for a compromised or broken package to be spotted before it reaches your machine. This
+matters because Nixpkgs maintainers can merge their own PRs without peer review, and supply
+chain attacks usually succeed within hours or days. See
+[Determinate Systems: nixpkgs cooldown](https://determinate.systems/blog/nixpkgs-cooldown/).
+
+This is a variant, not a requirement — use it when you want the extra buffer and accept lagging
+upstream by a week. Swap the `nixpkgs` input URL:
+
+```nix
+inputs = {
+  # rolling, with 7-day cooldown
+  nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-weekly/0.1";
+
+  # or pinned to a release, with cooldown (example: 26.05)
+  # nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/nixpkgs-26.05-chilled/0.1";
+};
+```
+
+Everything else (the `follows`, the `nixosSystem` call) stays the same. The cooldown is already
+on by default for Determinate Nix users and for the bare `nixpkgs` flake registry entry, so you
+only need this when you pin the input explicitly.
+
 ### Using two nixpkgs (stable + unstable)
 
 ```nix
